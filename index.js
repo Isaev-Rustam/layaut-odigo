@@ -2,14 +2,29 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   //burger menu
-  const burgerBtn = document.querySelector('.burger__btn');
-  burgerBtn.addEventListener('click', function () {
-    const menu = document.querySelector('.menu');
+  const burgersBtn = document.querySelectorAll('.burger__btn');
+  const menu = document.querySelector('.menu');
+
+  const toggleMenu = () => {
     menu.classList.toggle('menu--active');
-    burgerBtn.classList.toggle('burger__btn--active');
+
+    burgersBtn.forEach((btn) => btn.classList.toggle('burger__btn--active'));
+  };
+  menu.addEventListener(
+    'click',
+    function (e) {
+      if (e.target === e.currentTarget) {
+        toggleMenu();
+      }
+    },
+    false
+  );
+
+  burgersBtn.forEach((btn) => {
+    btn.addEventListener('click', toggleMenu);
   });
 
-  //play on play video
+  //play video
   const btn = document.querySelector('.video__btn-play');
   const video = document.querySelector('.video-player');
 
